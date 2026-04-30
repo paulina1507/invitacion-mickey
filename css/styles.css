@@ -1,0 +1,451 @@
+/* --- Variables y Configuración Global --- */
+:root {
+  --royal-blue: #003da5;
+  --gold: #d4af37;
+  --white: #ffffff;
+  --text-color: #ffffff;
+  --parchment-text: #5d4037; /* Marrón oscuro para el pergamino */
+  --font-heading: "Poppins", sans-serif;
+  --font-script: "Playfair Display", serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-heading);
+  background-color: #222; /* Color de fondo del body fuera de la tarjeta */
+  display: flex;
+  justify-content: center;
+}
+
+/* --- Contenedor Principal (Tarjeta Móvil) --- */
+.card-container {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  max-width: 450px; /* Tamaño ideal para teléfonos */
+  min-height: 100vh;
+  background-color: var(--royal-blue);
+  position: relative;
+  color: var(--text-color);
+  overflow-x: hidden;
+  /* Un patrón de fondo de brillos sutil */
+  background-image: url("../assets/img/bg-stars.png");
+  background-size: cover;
+}
+
+/* --- Estilos de Texto Generales --- */
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+}
+.name,
+.closing-text,
+.num-2 {
+  font-family: var(--font-heading);
+  color: var(--gold);
+}
+.closing-text {
+  font-size: 3rem;
+  color: white;
+  margin-top: 30px;
+}
+
+/* --- Sección Héroe 1 --- */
+.hero-section {
+  text-align: center;
+  padding-top: 50px;
+  position: relative;
+}
+
+.decor-top {
+  position: relative;
+  width: 100%;
+  height: 100px;
+}
+.balloon {
+  position: absolute;
+  width: clamp(110px, 14vw, 180px);
+  opacity: 0.9;
+}
+.b-gold-l1 {
+    right: 10px;
+    bottom: -280px;
+}
+.b-white-l1 {
+  left: 10px;
+  top: 10px;
+}
+/* izquierda */
+.b1 { left: -4%; top: 5%; }       /* arriba */
+.b3 { left: 3%; top: 35%; }       /* medio */
+.b5 { left: 8%; top: 95%; }       /* abajo */
+
+/* DERECHA */
+.b2 { right: -4%; top: 20%; }
+.b4 { right: 2%; top: 50%; }
+.b6 { right: 6%; top: 92%; }
+
+.balloon {
+  --rot: 0deg;
+  --scale: 1;
+  animation: float 6s ease-in-out infinite;
+}
+
+/* cada uno */
+.b1 { --rot: -5deg; --scale: 1; animation-duration: 5s; }
+.b2 { --rot: 8deg; --scale: 1.1; animation-duration: 7s; }
+.b3 { --rot: -10deg; --scale: 0.9; animation-duration: 6s; }
+.b4 { --rot: 5deg; --scale: 1.2; animation-duration: 8s; }
+.b5 { --rot: -3deg; --scale: 1.1; animation-duration: 5.5s; }
+.b6 { --rot: 6deg; --scale: 1; animation-duration: 7.5s; }
+
+@keyframes float {
+  0% {
+    transform: translateY(0px) rotate(var(--rot)) scale(var(--scale));
+  }
+  50% {
+    transform: translateY(-35px) rotate(var(--rot)) scale(var(--scale));
+  }
+  100% {
+    transform: translateY(0px) rotate(var(--rot)) scale(var(--scale));
+  }
+}
+
+.laurel {
+  position: absolute;
+  width: 50px;
+}
+.laurel-l {
+  left: 0;
+  transform: scaleX(-1);
+}
+.laurel-r {
+  right: 0;
+}
+
+.mickey-king-container {
+  position: relative;
+  margin-top: 20px;
+}
+.mickey-king {
+  width: 180px;
+}
+.ribbon {
+  width: 150px;
+  margin-top: -10px;
+}
+
+.title-container h3 {
+  font-size: 0.9rem;
+  font-weight: normal;
+  margin-top: 15px;
+}
+.num-2 {
+  font-size: 5rem;
+  font-weight: bold;
+  line-height: 1;
+}
+.name {
+  font-size: 2.5rem;
+}
+
+.verse {
+  font-size: 0.8rem;
+  padding: 0 40px;
+  margin-top: 20px;
+  font-style: italic;
+  color: #eee;
+}
+
+/* --- Sección Reproducción (Foto) --- */
+.playback-section {
+  text-align: center;
+  margin-top: 30px;
+  position: relative;
+}
+
+.photo-container {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.mickey-head-frame {
+  position: relative;
+  width: 200px;
+  height: 175px;
+}
+.mickey-frame {
+  width: 100%;
+  position: absolute;
+  z-index: 10;
+}
+.photo-inner {
+  position: absolute;
+  top: 37px; /* Ajuste preciso para que la foto encaje en el circulo central */
+  left: 49px;
+  width: 102px;
+  height: 102px;
+  border-radius: 50%;
+  overflow: hidden;
+  z-index: 5;
+}
+.photo-bebe {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.mickey-play-btn {
+  background: none;
+  border: none;
+  color: var(--gold);
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  margin-top: 10px;
+}
+.mickey-btn-shape {
+  width: 50px;
+  height: 45px;
+  background-color: var(--gold);
+  border-radius: 50% 50% 10% 10% / 50% 50% 5% 5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.mickey-btn-shape img {
+  width: 20px;
+}
+
+/* --- Sección Historia (Pergamino) --- */
+.history-section {
+  text-align: center;
+  margin-top: 30px;
+  position: relative;
+  padding: 0 20px;
+}
+.trumpets {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.trumpet {
+  width: 60px;
+}
+.parchment-container {
+  position: relative;
+  margin-top: -20px;
+}
+.parchment {
+  width: 100%;
+}
+.parchment-text {
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--parchment-text);
+  width: 80%;
+  font-family: var(--font-heading);
+  font-size: 0.8rem;
+  line-height: 1.6;
+}
+.name-text {
+  font-family: var(--font-script);
+  color: #222;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+/* --- Sección Detalles del Evento --- */
+.details-section {
+  text-align: center;
+  margin-top: 30px;
+  padding: 0 20px;
+}
+.godfather-container h3 {
+  color: var(--gold);
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+.godfather-container h2 {
+  font-family: var(--font-script);
+  color: var(--white);
+  font-size: 1.8rem;
+}
+
+.date-container {
+  margin-top: 20px;
+  border-top: 2px solid white;
+  border-bottom: 2px solid white;
+  padding: 10px 0;
+}
+.date-wrapper {
+  font-size: 1.2rem;
+}
+.date-day {
+  font-size: 2rem;
+  color: var(--gold);
+  font-weight: bold;
+  margin: 0 10px;
+}
+
+.event-details-card {
+  background-color: #fffde7; /* Color crema */
+  border-radius: 50px 50px 0 0;
+  margin-top: 30px;
+  padding: 30px 20px 0 20px;
+  color: #222;
+}
+.castle-img {
+  width: 100px;
+  margin-top: -60px;
+}
+.details-info h4 {
+  color: var(--gold);
+  margin-top: 20px;
+  font-size: 1.2rem;
+}
+.details-info p {
+  margin: 5px 0;
+}
+.address {
+  font-size: 0.7rem;
+  color: #555;
+  padding: 0 15px;
+}
+.time {
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.location-btn {
+  display: inline-flex;
+  align-items: center;
+  background-color: var(--gold);
+  color: black;
+  border-radius: 20px;
+  padding: 5px 15px;
+  text-decoration: none;
+  margin-top: 5px;
+  margin-bottom: 20px;
+  font-size: 0.8rem;
+}
+.location-btn img {
+  width: 15px;
+  margin-right: 5px;
+}
+
+/* --- Sección Cierre --- */
+.closing-section {
+  text-align: center;
+  margin-bottom: 50px;
+}
+.mickey-closing {
+  width: 180px;
+  margin-top: 20px;
+}
+
+.hidden {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s ease;
+}
+
+.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.playing .mickey-btn-shape {
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.star {
+  position: fixed;
+  top: -10px;
+  width: 5px;
+  height: 5px;
+  background: gold;
+  border-radius: 50%;
+  opacity: 0.8;
+  animation: fall linear forwards;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+}
+
+.floating-balloons {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* asegúrate que el contenido esté arriba */
+.card-container section,
+.whatsapp-btn {
+  position: relative;
+  z-index: 2;
+}
+
+.whatsapp-btn {
+  display: block;
+  margin: 20px auto;
+  background: #25d366;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 30px;
+  text-align: center;
+  width: 80%;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+@media (min-width: 768px) {
+  .card-container {
+    max-width: 500px;
+  }
+
+  .balloon {
+    width: clamp(80px, 6vw, 130px);
+  }
+}
+
+@media (max-width: 480px) {
+  .balloon {
+    width: clamp(80px, 16vw, 130px);
+  }
+
+  .b1 { left: -6%; top: 0%; }
+  .b3 { left: 0%; top: 40%; }
+  .b5 { left: 5%; top: 80%; }
+  .b2 { right: -6%; top: 10%; }
+  .b4 { right: 0%; top: 55%; }
+
+  .b6 {
+    display: none;
+  }
+}
