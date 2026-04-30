@@ -4,7 +4,8 @@
   --gold: #d4af37;
   --white: #ffffff;
   --text-color: #ffffff;
-  --parchment-text: #5d4037; /* Marrón oscuro para el pergamino */
+  --parchment-text: #5d4037;
+  /* Marrón oscuro para el pergamino */
   --font-heading: "Poppins", sans-serif;
   --font-script: "Playfair Display", serif;
 }
@@ -13,7 +14,8 @@ body {
   margin: 0;
   padding: 0;
   font-family: var(--font-heading);
-  background-color: #222; /* Color de fondo del body fuera de la tarjeta */
+  background-color: #222;
+  /* Color de fondo del body fuera de la tarjeta */
   display: flex;
   justify-content: center;
 }
@@ -23,7 +25,8 @@ body {
   position: relative;
   overflow: hidden;
   width: 100%;
-  max-width: 450px; /* Tamaño ideal para teléfonos */
+  max-width: 450px;
+  /* Tamaño ideal para teléfonos */
   min-height: 100vh;
   background-color: var(--royal-blue);
   position: relative;
@@ -41,12 +44,14 @@ h3,
 h4 {
   margin: 0;
 }
+
 .name,
 .closing-text,
 .num-2 {
   font-family: var(--font-heading);
   color: var(--gold);
 }
+
 .closing-text {
   font-size: 3rem;
   color: white;
@@ -65,28 +70,58 @@ h4 {
   width: 100%;
   height: 100px;
 }
+
 .balloon {
   position: absolute;
-  width: clamp(110px, 14vw, 180px);
+  width: clamp(120px, 22vw, 200px);
   opacity: 0.9;
 }
+
 .b-gold-l1 {
-    right: 10px;
-    bottom: -280px;
+  right: 10px;
+  bottom: -280px;
 }
+
 .b-white-l1 {
   left: 10px;
   top: 10px;
 }
+
 /* izquierda */
-.b1 { left: -4%; top: 5%; }       /* arriba */
-.b3 { left: 3%; top: 35%; }       /* medio */
-.b5 { left: 8%; top: 95%; }       /* abajo */
+.b1 {
+  left: -4%;
+  top: 5%;
+}
+
+/* arriba */
+.b3 {
+  left: 3%;
+  top: 35%;
+}
+
+/* medio */
+.b5 {
+  left: 8%;
+  top: 95%;
+}
+
+/* abajo */
 
 /* DERECHA */
-.b2 { right: -4%; top: 20%; }
-.b4 { right: 2%; top: 50%; }
-.b6 { right: 6%; top: 92%; }
+.b2 {
+  right: -4%;
+  top: 20%;
+}
+
+.b4 {
+  right: 2%;
+  top: 50%;
+}
+
+.b6 {
+  right: 6%;
+  top: 92%;
+}
 
 .balloon {
   --rot: 0deg;
@@ -95,20 +130,51 @@ h4 {
 }
 
 /* cada uno */
-.b1 { --rot: -5deg; --scale: 1; animation-duration: 5s; }
-.b2 { --rot: 8deg; --scale: 1.1; animation-duration: 7s; }
-.b3 { --rot: -10deg; --scale: 0.9; animation-duration: 6s; }
-.b4 { --rot: 5deg; --scale: 1.2; animation-duration: 8s; }
-.b5 { --rot: -3deg; --scale: 1.1; animation-duration: 5.5s; }
-.b6 { --rot: 6deg; --scale: 1; animation-duration: 7.5s; }
+.b1 {
+  --rot: -5deg;
+  --scale: 1;
+  animation-duration: 5s;
+}
+
+.b2 {
+  --rot: 8deg;
+  --scale: 1.1;
+  animation-duration: 7s;
+}
+
+.b3 {
+  --rot: -10deg;
+  --scale: 0.9;
+  animation-duration: 6s;
+}
+
+.b4 {
+  --rot: 5deg;
+  --scale: 1.2;
+  animation-duration: 8s;
+}
+
+.b5 {
+  --rot: -3deg;
+  --scale: 1.1;
+  animation-duration: 5.5s;
+}
+
+.b6 {
+  --rot: 6deg;
+  --scale: 1;
+  animation-duration: 7.5s;
+}
 
 @keyframes float {
   0% {
     transform: translateY(0px) rotate(var(--rot)) scale(var(--scale));
   }
+
   50% {
     transform: translateY(-35px) rotate(var(--rot)) scale(var(--scale));
   }
+
   100% {
     transform: translateY(0px) rotate(var(--rot)) scale(var(--scale));
   }
@@ -118,10 +184,12 @@ h4 {
   position: absolute;
   width: 50px;
 }
+
 .laurel-l {
   left: 0;
   transform: scaleX(-1);
 }
+
 .laurel-r {
   right: 0;
 }
@@ -130,9 +198,11 @@ h4 {
   position: relative;
   margin-top: 20px;
 }
+
 .mickey-king {
   width: 180px;
 }
+
 .ribbon {
   width: 150px;
   margin-top: -10px;
@@ -143,11 +213,13 @@ h4 {
   font-weight: normal;
   margin-top: 15px;
 }
+
 .num-2 {
   font-size: 5rem;
   font-weight: bold;
   line-height: 1;
 }
+
 .name {
   font-size: 2.5rem;
 }
@@ -173,19 +245,23 @@ h4 {
   display: flex;
   justify-content: center;
 }
+
 .mickey-head-frame {
   position: relative;
   width: 200px;
   height: 175px;
 }
+
 .mickey-frame {
   width: 100%;
   position: absolute;
   z-index: 10;
 }
+
 .photo-inner {
   position: absolute;
-  top: 37px; /* Ajuste preciso para que la foto encaje en el circulo central */
+  top: 37px;
+  /* Ajuste preciso para que la foto encaje en el circulo central */
   left: 49px;
   width: 102px;
   height: 102px;
@@ -193,6 +269,7 @@ h4 {
   overflow: hidden;
   z-index: 5;
 }
+
 .photo-bebe {
   width: 100%;
   height: 100%;
@@ -209,6 +286,7 @@ h4 {
   cursor: pointer;
   margin-top: 10px;
 }
+
 .mickey-btn-shape {
   width: 50px;
   height: 45px;
@@ -218,6 +296,7 @@ h4 {
   justify-content: center;
   align-items: center;
 }
+
 .mickey-btn-shape img {
   width: 20px;
 }
@@ -229,22 +308,27 @@ h4 {
   position: relative;
   padding: 0 20px;
 }
+
 .trumpets {
   position: relative;
   width: 100%;
   display: flex;
   justify-content: space-between;
 }
+
 .trumpet {
   width: 60px;
 }
+
 .parchment-container {
   position: relative;
   margin-top: -20px;
 }
+
 .parchment {
   width: 100%;
 }
+
 .parchment-text {
   position: absolute;
   top: 55%;
@@ -256,6 +340,7 @@ h4 {
   font-size: 0.8rem;
   line-height: 1.6;
 }
+
 .name-text {
   font-family: var(--font-script);
   color: #222;
@@ -269,11 +354,13 @@ h4 {
   margin-top: 30px;
   padding: 0 20px;
 }
+
 .godfather-container h3 {
   color: var(--gold);
   font-size: 1.2rem;
   font-weight: bold;
 }
+
 .godfather-container h2 {
   font-family: var(--font-script);
   color: var(--white);
@@ -286,9 +373,11 @@ h4 {
   border-bottom: 2px solid white;
   padding: 10px 0;
 }
+
 .date-wrapper {
   font-size: 1.2rem;
 }
+
 .date-day {
   font-size: 2rem;
   color: var(--gold);
@@ -297,29 +386,35 @@ h4 {
 }
 
 .event-details-card {
-  background-color: #fffde7; /* Color crema */
+  background-color: #fffde7;
+  /* Color crema */
   border-radius: 50px 50px 0 0;
   margin-top: 30px;
   padding: 30px 20px 0 20px;
   color: #222;
 }
+
 .castle-img {
   width: 100px;
   margin-top: -60px;
 }
+
 .details-info h4 {
   color: var(--gold);
   margin-top: 20px;
   font-size: 1.2rem;
 }
+
 .details-info p {
   margin: 5px 0;
 }
+
 .address {
   font-size: 0.7rem;
   color: #555;
   padding: 0 15px;
 }
+
 .time {
   font-weight: bold;
   font-size: 1.1rem;
@@ -337,6 +432,7 @@ h4 {
   margin-bottom: 20px;
   font-size: 0.8rem;
 }
+
 .location-btn img {
   width: 15px;
   margin-right: 5px;
@@ -347,6 +443,7 @@ h4 {
   text-align: center;
   margin-bottom: 50px;
 }
+
 .mickey-closing {
   width: 180px;
   margin-top: 20px;
@@ -371,9 +468,11 @@ h4 {
   0% {
     transform: scale(1);
   }
+
   50% {
     transform: scale(1.1);
   }
+
   100% {
     transform: scale(1);
   }
@@ -436,16 +535,109 @@ h4 {
 
 @media (max-width: 480px) {
   .balloon {
-    width: clamp(80px, 16vw, 130px);
+    width: clamp(110px, 28vw, 170px);
+    opacity: 0.8;
   }
 
-  .b1 { left: -6%; top: 0%; }
-  .b3 { left: 0%; top: 40%; }
-  .b5 { left: 5%; top: 80%; }
-  .b2 { right: -6%; top: 10%; }
-  .b4 { right: 0%; top: 55%; }
+  /* izquierda */
+  .b1 {
+    left: -10%;
+    top: 0%;
+  }
+
+  .b3 {
+    left: -5%;
+    top: 40%;
+  }
+
+  .b5 {
+    left: 0%;
+    top: 85%;
+  }
+
+  /* derecha */
+  .b2 {
+    right: -10%;
+    top: 10%;
+  }
+
+  .b4 {
+    right: -5%;
+    top: 55%;
+  }
 
   .b6 {
     display: none;
+  }
+
+  .mickey-king {
+    width: 140px;
+  }
+
+  .ribbon {
+    width: 120px;
+  }
+
+  .num-2 {
+    font-size: 4rem;
+  }
+
+  .name {
+    font-size: 2rem;
+  }
+
+  .verse {
+    font-size: 0.7rem;
+    padding: 0 20px;
+  }
+
+  .mickey-head-frame {
+    width: 170px;
+    height: 150px;
+  }
+
+  .photo-inner {
+    top: 30px;
+    left: 40px;
+    width: 90px;
+    height: 90px;
+  }
+
+  .parchment-text {
+    font-size: 0.7rem;
+    width: 85%;
+  }
+
+  .name-text {
+    font-size: 1rem;
+  }
+
+  .event-details-card {
+    border-radius: 30px 30px 0 0;
+    padding: 20px 10px 0 10px;
+  }
+
+  .castle-img {
+    width: 80px;
+    margin-top: -40px;
+  }
+
+  .details-info h4 {
+    font-size: 1rem;
+  }
+
+  .address {
+    font-size: 0.65rem;
+  }
+
+  .time {
+    font-size: 1rem;
+
+  }
+
+  .whatsapp-btn {
+    width: 90%;
+    font-size: 0.9rem;
+    padding: 10px;
   }
 }
