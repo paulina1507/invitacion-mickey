@@ -10,6 +10,18 @@
   --font-script: "Playfair Display", serif;
 }
 
+@font-face {
+  font-family: "Waltograph";
+  src: url("../assets/fonts/waltographUI.ttf") format("truetype");
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "WaltographBold";
+  src: url("../assets/fonts/waltograph42.otf") format("opentype");
+  font-weight: bold;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -18,6 +30,37 @@ body {
   /* Color de fondo del body fuera de la tarjeta */
   display: flex;
   justify-content: center;
+}
+
+.inicio-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: #000; /* puedes cambiar color */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  cursor: pointer;
+}
+
+.inicio-screen p {
+  color: #fff;
+  font-size: 20px;
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+  animation: fade 1.5s infinite alternate;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0.4;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 /* --- Contenedor Principal (Tarjeta Móvil) --- */
@@ -47,7 +90,7 @@ h4 {
 
 .name,
 .closing-text,
-.num-2 {
+.num {
   font-family: var(--font-heading);
   color: var(--gold);
 }
@@ -87,97 +130,71 @@ h4 {
   top: 10px;
 }
 
-/* izquierda */
-.b1 {
-  left: -4%;
-  top: 5%;
+.balloons-left,
+.balloons-right {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  z-index: 1;
 }
 
-/* arriba */
-.b3 {
-  left: 3%;
-  top: 35%;
+.balloons-left {
+  left: -70px;
+  top: 60px;
 }
 
-/* medio */
-.b5 {
-  left: 8%;
-  top: 95%;
+.balloons-right {
+  right: -70px;
+  bottom: 140px;
 }
 
-/* abajo */
-
-/* DERECHA */
-.b2 {
-  right: -4%;
-  top: 20%;
+.balloons-left img:nth-child(1),
+.balloons-right img:nth-child(1) {
+  transform: scale(0.8) rotate(-6deg);
 }
 
-.b4 {
-  right: 2%;
-  top: 50%;
+.balloons-left img:nth-child(2),
+.balloons-right img:nth-child(2) {
+  transform: scale(1.1) rotate(6deg);
 }
 
-.b6 {
-  right: 6%;
-  top: 92%;
+.balloons-left img:nth-child(3),
+.balloons-right img:nth-child(3) {
+  transform: scale(0.9) rotate(-4deg);
 }
 
-.balloon {
-  --rot: 0deg;
-  --scale: 1;
-  animation: float 6s ease-in-out infinite;
+.balloons-left img,
+.balloons-right img {
+  width: clamp(140px, 18vw, 220px);
 }
 
-/* cada uno */
-.b1 {
-  --rot: -5deg;
-  --scale: 1;
+.balloons-left img:nth-child(1) {
   animation-duration: 5s;
 }
-
-.b2 {
-  --rot: 8deg;
-  --scale: 1.1;
+.balloons-left img:nth-child(2) {
   animation-duration: 7s;
 }
-
-.b3 {
-  --rot: -10deg;
-  --scale: 0.9;
+.balloons-left img:nth-child(3) {
   animation-duration: 6s;
 }
 
-.b4 {
-  --rot: 5deg;
-  --scale: 1.2;
+.balloons-right img:nth-child(1) {
+  animation-duration: 6s;
+}
+.balloons-right img:nth-child(2) {
   animation-duration: 8s;
 }
-
-.b5 {
-  --rot: -3deg;
-  --scale: 1.1;
+.balloons-right img:nth-child(3) {
   animation-duration: 5.5s;
 }
 
-.b6 {
-  --rot: 6deg;
-  --scale: 1;
-  animation-duration: 7.5s;
+.balloons-left img {
+  transform: rotate(-6deg);
 }
 
-@keyframes float {
-  0% {
-    transform: translateY(0px) rotate(var(--rot)) scale(var(--scale));
-  }
-
-  50% {
-    transform: translateY(-35px) rotate(var(--rot)) scale(var(--scale));
-  }
-
-  100% {
-    transform: translateY(0px) rotate(var(--rot)) scale(var(--scale));
-  }
+.balloons-right img {
+  transform: rotate(6deg);
 }
 
 .laurel {
@@ -187,41 +204,74 @@ h4 {
 
 .laurel-l {
   left: 0;
-  transform: scaleX(-1);
 }
 
 .laurel-r {
   right: 0;
+  transform: scaleX(-1);
 }
 
 .mickey-king-container {
   position: relative;
-  margin-top: 20px;
+  display: flex;
+  justify-content: center;
 }
 
 .mickey-king {
-  width: 180px;
+  width: clamp(220px, 148vw, 320px);
 }
 
 .ribbon {
-  width: 150px;
+  width: clamp(180px, 24vw, 280px);
   margin-top: -10px;
 }
 
-.title-container h3 {
-  font-size: 0.9rem;
-  font-weight: normal;
-  margin-top: 15px;
+.ribbon-container {
+  position: relative;
+  display: inline-block;
 }
 
-.num-2 {
+.ribbon-text {
+  position: absolute;
+  top: 75%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: "Waltograph";
+  font-size: clamp(22px, 3vw, 34px);
+  color: white;
+  white-space: nowrap;
+  text-shadow:
+    0 2px 0 #caa233,
+    0 4px 6px rgba(0, 0, 0, 0.5),
+    0 0 8px rgba(255, 255, 255, 0.3);
+  text-align: center;
+}
+
+.title-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0; 
+}
+
+.title-container h3 {
+  font-weight: normal;
+  font-family: var(--font-script);
+}
+
+.num {
   font-size: 5rem;
   font-weight: bold;
   line-height: 1;
 }
 
 .name {
-  font-size: 2.5rem;
+  font-family: "WaltographBold";
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  color: var(--gold);
+  letter-spacing: 1px;
+  margin-top: -10px;
+  transform: translateY(-8px);
 }
 
 .verse {
@@ -239,35 +289,37 @@ h4 {
   position: relative;
 }
 
-.photo-container {
-  position: relative;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-}
-
 .mickey-head-frame {
   position: relative;
   width: 200px;
   height: 175px;
 }
 
-.mickey-frame {
-  width: 100%;
-  position: absolute;
-  z-index: 10;
+.photo-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
+/* FOTO (ARRIBA) */
 .photo-inner {
-  position: absolute;
-  top: 37px;
-  /* Ajuste preciso para que la foto encaje en el circulo central */
-  left: 49px;
-  width: 102px;
-  height: 102px;
+  width: 120px;
+  height: 120px;
   border-radius: 50%;
   overflow: hidden;
-  z-index: 5;
+  z-index: 2;
+  margin-top: 30px;
+}
+
+/* FRAME (ABAJO) */
+.mickey-frame {
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 220px;
+  z-index: 1;
 }
 
 .photo-bebe {
@@ -276,29 +328,36 @@ h4 {
   object-fit: cover;
 }
 
-.mickey-play-btn {
-  background: none;
-  border: none;
-  color: var(--gold);
-  display: inline-flex;
-  flex-direction: column;
-  align-items: center;
+/* ICONO BOTÓN MÚSICA */
+.play-btn-icon {
+  width: clamp(55px, 12vw, 90px);
+  margin-top: 30px;
   cursor: pointer;
-  margin-top: 10px;
+  z-index: 3;
+  transition: transform 0.2s ease;
+
+  animation: pulsePlay 1.2s infinite;
+  transition: transform 0.2s ease;
 }
 
-.mickey-btn-shape {
-  width: 50px;
-  height: 45px;
-  background-color: var(--gold);
-  border-radius: 50% 50% 10% 10% / 50% 50% 5% 5%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+@keyframes pulsePlay {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
-.mickey-btn-shape img {
-  width: 20px;
+.play-btn-icon:hover {
+  transform: scale(1.3);
+}
+
+.play-btn-icon:active {
+  transform: scale(0.9);
 }
 
 /* --- Sección Historia (Pergamino) --- */
@@ -309,36 +368,59 @@ h4 {
   padding: 0 20px;
 }
 
+.trumpet {
+  position: absolute;
+  width: 120px;
+}
+
 .trumpets {
   position: relative;
   width: 100%;
-  display: flex;
-  justify-content: space-between;
 }
 
-.trumpet {
-  width: 60px;
+.trumpets-small {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.trumpets-small .trumpet {
+  position: static; /* 👈 CLAVE para que no se vaya a la esquina */
+  width: 70px;
+}
+
+.trumpet-l {
+  left: 0;
+}
+
+.trumpet-r {
+  right: 0;
+  transform: scaleX(-1);
 }
 
 .parchment-container {
   position: relative;
-  margin-top: -20px;
+  margin-top: -10px;
+  display: flex;
+  justify-content: center;
 }
 
 .parchment {
-  width: 100%;
+  width: clamp(720px, 110%, 500px);
+  max-width: none;
 }
 
 .parchment-text {
   position: absolute;
-  top: 55%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   color: var(--parchment-text);
-  width: 80%;
   font-family: var(--font-heading);
-  font-size: 0.8rem;
-  line-height: 1.6;
+  width: 75%;
+  font-size: clamp(0.85rem, 2.2vw, 1rem); /* 👈 escala bonito */
+  line-height: 1.7;
 }
 
 .name-text {
@@ -352,7 +434,7 @@ h4 {
 .details-section {
   text-align: center;
   margin-top: 30px;
-  padding: 0 20px;
+  padding: 0 60px;
 }
 
 .godfather-container h3 {
@@ -387,16 +469,13 @@ h4 {
 
 .event-details-card {
   background-color: #fffde7;
-  /* Color crema */
-  border-radius: 50px 50px 0 0;
+  border-radius: 50% 50% 0 0 / 35% 35% 0 0;
   margin-top: 30px;
-  padding: 30px 20px 0 20px;
   color: #222;
 }
 
 .castle-img {
-  width: 100px;
-  margin-top: -60px;
+  width: clamp(160px, 40vw, 260px);
 }
 
 .details-info h4 {
@@ -421,21 +500,39 @@ h4 {
 }
 
 .location-btn {
-  display: inline-flex;
-  align-items: center;
-  background-color: var(--gold);
-  color: black;
-  border-radius: 20px;
-  padding: 5px 15px;
+  display: inline-block;
+  background: none;
+  padding: 0;
+  margin: 15px 0;
+  border: none;
   text-decoration: none;
-  margin-top: 5px;
-  margin-bottom: 20px;
-  font-size: 0.8rem;
 }
 
 .location-btn img {
-  width: 15px;
-  margin-right: 5px;
+  width: clamp(45px, 10vw, 80px);
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  animation: pulseBtn 1.8s infinite;
+}
+
+@keyframes pulseBtn {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.location-btn img:hover {
+  transform: scale(1.25);
+}
+
+.location-btn img:active {
+  transform: scale(0.9);
 }
 
 /* --- Sección Cierre --- */
@@ -512,15 +609,42 @@ h4 {
 
 .whatsapp-btn {
   display: block;
-  margin: 20px auto;
-  background: #25d366;
-  color: white;
-  padding: 12px 20px;
-  border-radius: 30px;
+  width: 90%;
+  max-width: 420px;
+  margin: 30px auto;
+  padding: 16px 20px;
   text-align: center;
-  width: 80%;
+  font-weight: 600;
+  font-size: 18px;
+  border-radius: 50px;
   text-decoration: none;
-  font-weight: bold;
+  color: #3a2b00;
+  background: linear-gradient(135deg, #f7d774, #e6b84c, #f7d774);
+  box-shadow:
+    0 8px 20px rgba(0, 0, 0, 0.25),
+    inset 0 2px 6px rgba(255, 255, 255, 0.6);
+  transition: all 0.3s ease;
+}
+
+.whatsapp-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.6),
+    transparent
+  );
+  transform: skewX(-25deg);
+}
+
+.whatsapp-btn:hover::before {
+  left: 130%;
+  transition: 0.8s;
 }
 
 @media (min-width: 768px) {
@@ -534,56 +658,46 @@ h4 {
 }
 
 @media (max-width: 480px) {
-  .balloon {
-    width: clamp(110px, 28vw, 170px);
-    opacity: 0.8;
+  .card-container {
+    max-width: 100%;
   }
 
-  /* izquierda */
-  .b1 {
-    left: -10%;
-    top: 0%;
+  /* globos */
+  .balloons-left {
+    left: -35px;
+    top: 60px;
   }
 
-  .b3 {
-    left: -5%;
-    top: 40%;
+  .balloons-right {
+    right: -35px;
+    top: 200px;
   }
 
-  .b5 {
-    left: 0%;
-    top: 85%;
+  .balloons-left img,
+  .balloons-right img {
+    width: clamp(90px, 20vw, 130px);
   }
 
-  /* derecha */
-  .b2 {
-    right: -10%;
-    top: 10%;
-  }
-
-  .b4 {
-    right: -5%;
-    top: 55%;
-  }
-
-  .b6 {
-    display: none;
-  }
-
+  /* mickey */
   .mickey-king {
-    width: 140px;
+    width: clamp(200px, 75vw, 280px);
   }
 
   .ribbon {
-    width: 120px;
+    width: clamp(160px, 45vw, 220px);
   }
 
-  .num-2 {
+  .mickey-king-container {
+    margin-top: 20px;
+  }
+
+  /* textos */
+  .num {
     font-size: 4rem;
   }
 
   .name {
-    font-size: 2rem;
+    font-size: 4rem;
   }
 
   .verse {
@@ -591,53 +705,53 @@ h4 {
     padding: 0 20px;
   }
 
-  .mickey-head-frame {
-    width: 170px;
-    height: 150px;
+  .photo-container {
+    margin-top: 20px;
   }
 
   .photo-inner {
-    top: 30px;
-    left: 40px;
-    width: 90px;
-    height: 90px;
+    width: clamp(80px, 28vw, 110px);
+    height: clamp(80px, 28vw, 110px);
   }
 
-  .parchment-text {
-    font-size: 0.7rem;
-    width: 85%;
-  }
-
-  .name-text {
-    font-size: 1rem;
-  }
-
-  .event-details-card {
-    border-radius: 30px 30px 0 0;
-    padding: 20px 10px 0 10px;
+  /* FRAME ABAJO */
+  .mickey-frame {
+    width: clamp(140px, 55vw, 200px);
   }
 
   .castle-img {
-    width: 80px;
-    margin-top: -40px;
-  }
-
-  .details-info h4 {
-    font-size: 1rem;
+    width: clamp(140px, 45vw, 220px);
   }
 
   .address {
     font-size: 0.65rem;
   }
 
-  .time {
-    font-size: 1rem;
+  .parchment {
+    width: 195%;
+  }
 
+  .parchment-text {
+    width: 78%;
+    font-size: 0.8rem;
+  }
+
+  .details-section {
+    padding: 0 25px;
+  }
+
+  .location-btn img {
+    width: clamp(60px, 18vw, 90px);
+  }
+
+  .play-btn-icon {
+    width: clamp(60px, 18vw, 85px);
+    margin-top: 35px;
   }
 
   .whatsapp-btn {
-    width: 90%;
-    font-size: 0.9rem;
-    padding: 10px;
+    width: 70%;
+    font-size: 15px;
+    padding: 16px;
   }
 }

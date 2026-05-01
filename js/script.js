@@ -1,3 +1,7 @@
+// ⏳ =========================
+// CUENTA REGRESIVA
+// =========================
+
 // Configura la fecha del evento aquí (Año, Mes -1, Día, Hora, Minutos)
 const eventDate = new Date(2026, 9, 15, 16, 0, 0).getTime();
 
@@ -10,65 +14,102 @@ const updateTimer = () => {
     const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
 
-    document.getElementById("days").innerText = d.toString().padStart(2, "0");
-    document.getElementById("hours").innerText = h.toString().padStart(2, "0");
-    document.getElementById("minutes").innerText = m
-      .toString()
-      .padStart(2, "0");
+    const daysEl = document.getElementById("days");
+    const hoursEl = document.getElementById("hours");
+    const minutesEl = document.getElementById("minutes");
+
+    if (daysEl && hoursEl && minutesEl) {
+      daysEl.innerText = d.toString().padStart(2, "0");
+      hoursEl.innerText = h.toString().padStart(2, "0");
+      minutesEl.innerText = m.toString().padStart(2, "0");
+    }
   } else {
-    document.querySelector(".countdown-container").innerHTML =
-      "<p>¡ES HOY! 🎂</p>";
+    const container = document.querySelector(".countdown-container");
+    if (container) {
+      container.innerHTML = "<p>¡ES HOY! 🎂</p>";
+    }
   }
 };
 
 setInterval(updateTimer, 1000);
 updateTimer();
 
+
+// 🚀 =========================
+// TODO EL DOM
+// =========================
+
 document.addEventListener("DOMContentLoaded", function () {
-  const music = document.getElementById("musica");
+
+  // 🎯 ELEMENTOS
+  const inicio = document.getElementById("inicio");
+  const contenido = document.getElementById("contenido");
+  const musica = document.getElementById("musica");
   const playBtn = document.getElementById("play-btn");
 
-  playBtn.addEventListener("click", function () {
-    if (music.paused) {
-      music.play();
-      playBtn.classList.add("playing");
-      playBtn.querySelector("span").innerText = "Sonando 🎵";
-    } else {
-      music.pause();
-      playBtn.classList.remove("playing");
-      playBtn.querySelector("span").innerText = "Play para reproducir";
-    }
-  });
-});
+  // 🔒 PANTALLA INICIAL
+  if (inicio && contenido) {
+    inicio.addEventListener("click", () => {
+      inicio.style.display = "none";
+      contenido.style.display = "block";
 
-const elements = document.querySelectorAll("section");
+      if (musica) {
+        musica.play().catch(() => {
+          console.log("Autoplay bloqueado 😅");
+        });
+      }
 
-const observer = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("show");
+      // 🌟 Iniciar estrellas SOLO después de entrar
+      setInterval(createStar, 300);
+    });
+  }
+
+  // 🔊 BOTÓN PLAY / PAUSA
+  if (playBtn && musica) {
+    playBtn.addEventListener("click", function () {
+      if (musica.paused) {
+        musica.play();
+        playBtn.classList.add("playing");
+      } else {
+        musica.pause();
+        playBtn.classList.remove("playing");
       }
     });
-  },
-  { threshold: 0.2 },
-);
+  }
 
-elements.forEach((el) => {
-  el.classList.add("hidden");
-  observer.observe(el);
+  // ✨ ANIMACIONES AL SCROLL
+  const elements = document.querySelectorAll("section");
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("show");
+        }
+      });
+    },
+    { threshold: 0.2 }
+  );
+
+  elements.forEach((el) => {
+    el.classList.add("hidden");
+    observer.observe(el);
+  });
+
 });
 
 
+// 🌟 =========================
+// ESTRELLITAS
+// =========================
+
 function createStar() {
-    const star = document.createElement("div");
-    star.classList.add("star");
-    star.style.left = Math.random() * window.innerWidth + "px";
-    star.style.animationDuration = (Math.random() * 3 + 2) + "s";
+  const star = document.createElement("div");
+  star.classList.add("star");
+  star.style.left = Math.random() * window.innerWidth + "px";
+  star.style.animationDuration = (Math.random() * 3 + 2) + "s";
 
-    document.body.appendChild(star);
+  document.body.appendChild(star);
 
-    setTimeout(() => star.remove(), 5000);
+  setTimeout(() => star.remove(), 5000);
 }
-
-setInterval(createStar, 300);
