@@ -44,8 +44,12 @@ document.addEventListener("DOMContentLoaded", function () {
   // 🎯 ELEMENTOS
   const inicio = document.getElementById("inicio");
   const contenido = document.getElementById("contenido");
-  const musica = document.getElementById("musica");
+
   const playBtn = document.getElementById("play-btn");
+  const musica = document.getElementById("musica");
+
+  const playIcon = document.querySelector(".play-icon");
+  const pauseIcon = document.querySelector(".pause-icon");
 
   // 🔒 PANTALLA INICIAL
   if (inicio && contenido) {
@@ -57,9 +61,13 @@ document.addEventListener("DOMContentLoaded", function () {
         musica.play().catch(() => {
           console.log("Autoplay bloqueado 😅");
         });
+
+        playIcon.style.display = "none";
+        pauseIcon.style.display = "block";
+
+        playBtn.classList.add("playing");
       }
 
-      // 🌟 Iniciar estrellas SOLO después de entrar
       setInterval(createStar, 300);
     });
   }
@@ -69,9 +77,18 @@ document.addEventListener("DOMContentLoaded", function () {
     playBtn.addEventListener("click", function () {
       if (musica.paused) {
         musica.play();
+
+        playIcon.style.display = "none";
+        pauseIcon.style.display = "block";
+
         playBtn.classList.add("playing");
+
       } else {
         musica.pause();
+
+        playIcon.style.display = "block";
+        pauseIcon.style.display = "none";
+
         playBtn.classList.remove("playing");
       }
     });

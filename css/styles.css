@@ -38,7 +38,7 @@ body {
   left: 0;
   width: 100%;
   height: 100vh;
-  background: #000; /* puedes cambiar color */
+  background: var(--royal-blue);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -58,6 +58,7 @@ body {
   from {
     opacity: 0.4;
   }
+
   to {
     opacity: 1;
   }
@@ -75,8 +76,6 @@ body {
   position: relative;
   color: var(--text-color);
   overflow-x: hidden;
-  /* Un patrón de fondo de brillos sutil */
-  background-image: url("../assets/img/bg-stars.png");
   background-size: cover;
 }
 
@@ -106,6 +105,34 @@ h4 {
   text-align: center;
   padding-top: 50px;
   position: relative;
+}
+
+.star-twinkle {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-image: url("../assets/img/bg-stars.png");
+  background-repeat: no-repeat;
+  background-size: contain; /* 🔥 clave */
+  background-position: center;
+  opacity: 0;
+  animation: twinkle 3s infinite ease-in-out;
+  pointer-events: none;
+}
+
+@keyframes twinkle {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1); /* 🔥 más sutil */
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
 }
 
 .decor-top {
@@ -172,9 +199,11 @@ h4 {
 .balloons-left img:nth-child(1) {
   animation-duration: 5s;
 }
+
 .balloons-left img:nth-child(2) {
   animation-duration: 7s;
 }
+
 .balloons-left img:nth-child(3) {
   animation-duration: 6s;
 }
@@ -182,9 +211,11 @@ h4 {
 .balloons-right img:nth-child(1) {
   animation-duration: 6s;
 }
+
 .balloons-right img:nth-child(2) {
   animation-duration: 8s;
 }
+
 .balloons-right img:nth-child(3) {
   animation-duration: 5.5s;
 }
@@ -251,7 +282,7 @@ h4 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0; 
+  gap: 0;
 }
 
 .title-container h3 {
@@ -330,34 +361,63 @@ h4 {
 
 /* ICONO BOTÓN MÚSICA */
 .play-btn-icon {
-  width: clamp(55px, 12vw, 90px);
-  margin-top: 30px;
+  position: relative;
+  margin-top: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   cursor: pointer;
-  z-index: 3;
-  transition: transform 0.2s ease;
-
-  animation: pulsePlay 1.2s infinite;
-  transition: transform 0.2s ease;
 }
 
+/* Ocultar pause al inicio */
+.pause-icon {
+  display: none;
+}
+
+/* Iconos uno encima del otro */
+.play-icon,
+.pause-icon {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Tamaño + transición */
+.play-btn-icon img {
+  width: 120px;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.play-btn-icon:hover img {
+  transform: translateX(-50%) scale(1.15);
+}
+
+.play-btn-icon:active img {
+  transform: translateX(-50%) scale(0.9);
+}
+
+/* Animación de pulso SOLO cuando está en play */
+.playing {
+  animation: pulsePlay 1.2s infinite;
+}
+
+/* Animación correcta (mantiene centrado) */
 @keyframes pulsePlay {
   0% {
-    transform: scale(1);
+    transform: translateX(-50%) scale(1);
   }
+
   50% {
-    transform: scale(1.2);
+    transform: translateX(-50%) scale(1.15);
   }
+
   100% {
-    transform: scale(1);
+    transform: translateX(-50%) scale(1);
   }
 }
 
-.play-btn-icon:hover {
-  transform: scale(1.3);
-}
-
-.play-btn-icon:active {
-  transform: scale(0.9);
+.playing {
+  animation: pulsePlay 1.2s infinite;
 }
 
 /* --- Sección Historia (Pergamino) --- */
@@ -371,11 +431,13 @@ h4 {
 .trumpet {
   position: absolute;
   width: 120px;
+  top: -35px;
 }
 
 .trumpets {
   position: relative;
   width: 100%;
+  margin-bottom: 40px;
 }
 
 .trumpets-small {
@@ -386,8 +448,8 @@ h4 {
 }
 
 .trumpets-small .trumpet {
-  position: static; /* 👈 CLAVE para que no se vaya a la esquina */
-  width: 70px;
+  position: static;
+  width: 120px;
 }
 
 .trumpet-l {
@@ -419,7 +481,8 @@ h4 {
   color: var(--parchment-text);
   font-family: var(--font-heading);
   width: 75%;
-  font-size: clamp(0.85rem, 2.2vw, 1rem); /* 👈 escala bonito */
+  font-size: clamp(0.85rem, 2.2vw, 1rem);
+  /* 👈 escala bonito */
   line-height: 1.7;
 }
 
@@ -519,9 +582,11 @@ h4 {
   0% {
     transform: scale(1);
   }
+
   50% {
     transform: scale(1.15);
   }
+
   100% {
     transform: scale(1);
   }
@@ -633,12 +698,10 @@ h4 {
   left: -75%;
   width: 50%;
   height: 100%;
-  background: linear-gradient(
-    120deg,
-    transparent,
-    rgba(255, 255, 255, 0.6),
-    transparent
-  );
+  background: linear-gradient(120deg,
+      transparent,
+      rgba(255, 255, 255, 0.6),
+      transparent);
   transform: skewX(-25deg);
 }
 
