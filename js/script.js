@@ -34,13 +34,11 @@ const updateTimer = () => {
 setInterval(updateTimer, 1000);
 updateTimer();
 
-
 // 🚀 =========================
 // TODO EL DOM
 // =========================
 
 document.addEventListener("DOMContentLoaded", function () {
-
   // 🎯 ELEMENTOS
   const inicio = document.getElementById("inicio");
   const contenido = document.getElementById("contenido");
@@ -82,7 +80,6 @@ document.addEventListener("DOMContentLoaded", function () {
         pauseIcon.style.display = "block";
 
         playBtn.classList.add("playing");
-
       } else {
         musica.pause();
 
@@ -105,7 +102,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       });
     },
-    { threshold: 0.2 }
+    { threshold: 0.2 },
   );
 
   elements.forEach((el) => {
@@ -113,8 +110,23 @@ document.addEventListener("DOMContentLoaded", function () {
     observer.observe(el);
   });
 
-});
+  // 💬 BOTÓN CONFIRMAR ASISTENCIA
+  const confirmarBtn = document.getElementById("confirmarBtn");
 
+  if (confirmarBtn) {
+    confirmarBtn.addEventListener("click", function (e) {
+      e.preventDefault();
+
+      const telefono = "525531298456";
+
+      const mensaje = `Hola, confirmo mi asistencia al Bautizo y 1er cumpleaños de Dante Jared`;
+
+      const url = `https://wa.me/${telefono}?text=${encodeURIComponent(mensaje)}`;
+
+      window.open(url, "_blank");
+    });
+  }
+});
 
 // 🌟 =========================
 // ESTRELLITAS
@@ -124,7 +136,7 @@ function createStar() {
   const star = document.createElement("div");
   star.classList.add("star");
   star.style.left = Math.random() * window.innerWidth + "px";
-  star.style.animationDuration = (Math.random() * 3 + 2) + "s";
+  star.style.animationDuration = Math.random() * 3 + 2 + "s";
 
   document.body.appendChild(star);
 
